@@ -9,7 +9,7 @@ function PaymentQR(props){
 
     return (
     <div>
-         <h4> Scan this Qr code to make payment of Rs{props.amount} for user id : {props.id} </h4>
+         <h4> Scan this Qr code to make payment of Rs{props.alldata.amount} for user id : {props.alldata.id} </h4>
         <div style={{ background: 'white', padding: '16px' }}>
         <QRCode value={props.url}></QRCode>
         </div>
@@ -26,6 +26,15 @@ function PaymentQR(props){
                 
         <Button variant="contained" color="success" onClick={()=>{setConfirmation(true);
             setCancel(false);
+            const today=new Date();
+            
+            var messageData="Payment Confirmation with below details : \r\n"
+            +"Name : "+props.alldata.name+"\r\n"
+            +"Phone Number : "+props.alldata.phoneNumber+"\r\n"
+            +"Amount : "+props.alldata.amount+"\r\n"
+            +"Transaction Date Time : "+today.toISOString()+"\r\n";
+            var baseUrl="https://wa.me/917836010403?text="+encodeURIComponent(messageData);
+           window.location.href=baseUrl;
         }}>
             Payment Done
         </Button>

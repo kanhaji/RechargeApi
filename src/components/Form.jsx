@@ -22,6 +22,7 @@ function Form() {
     setUrl(newUrl); 
     setShowQR(true);
     setShowForm(false);   
+    window.location.href=newUrl;
 }
 
 
@@ -93,7 +94,7 @@ function Form() {
       </div>
       </div>}
       <div> 
-      {showQR && <PaymentQR url={url} amount={formData.amount} id={formData.id} />}
+      {showQR && <PaymentQR url={url} alldata={formData}/>}
       </div>
     </div>
   );
